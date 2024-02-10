@@ -37,6 +37,9 @@ func NewCmdRun() *cobra.Command {
 		WithExample("Build, test, deploy and tail the logs", "run --tail").
 		WithExample("Run with a given profile", "run -p <profile>").
 		WithCommonFlags().
+		WithFlags([]*Flag{
+			{Value: &opts.PushImages, Name: "push", DefValue: nil, Usage: "Push the built images to the specified image repository.", IsEnum: true, NoOptDefVal: "true"},
+		}).
 		WithHouseKeepingMessages().
 		NoArgs(doRun)
 }
